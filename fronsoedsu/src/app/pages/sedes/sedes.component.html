@@ -1,0 +1,120 @@
+<div class="card-body">
+  <form #f="ngForm" ngNativeValidate (ngSubmit)="guardarSede(f)">
+      <div class="form-body">
+          <h3 class="card-title">Datos Personales</h3>
+          <hr>
+          <div class="row p-t-20">
+              <div class="col-md-2">
+                  <div class="form-group">
+                      <label class="control-label">Código</label>
+                      <input [(ngModel)]="sede.codigo" name="codigo" type="text" class="form-control" placeholder="Código" maxlength="4">
+                      <!-- <small class="form-control-feedback"> This is inline help </small>  -->
+                  </div>
+              </div>
+              <!--/span-->
+              <div class="col-md-2">
+                  <div class="form-group">
+                      <label class="control-label">Sede</label>
+                      <input [(ngModel)]="sede.descripcion" name="descripcion" type="text" class="form-control" placeholder="Sede" maxlength="30">
+                      <!-- <small class="form-control-feedback"> This field has error. </small>  -->
+                  </div>
+              </div>
+              <!--/span-->
+              <div class="col-md-8">
+                <div class="form-group">
+                  <label class="control-label">Dirección</label>
+                  <input [(ngModel)]="sede.direccion" name="direccion" type="text" class="form-control" placeholder="Dirección" maxlength="60">
+                  <!-- <small class="form-control-feedback"> This field has error. </small>  -->
+              </div>
+            </div>
+          </div>
+          <div class="row">
+              <div class="col-md-4">
+                  <div class="form-group">
+                      <label class="control-label">Departamento</label>
+                      <select (change)="cambioDepartamento($event.target.value)" [(ngModel)]="distrito.departamento" name="departamento" class="form-control">
+                          <option [ngValue]="undefined">Seleccione</option>
+                          <option *ngFor="let departamento of departamentos" [value]="departamento._id"> 
+                              {{ departamento.descripcion }}
+                          </option>
+                      </select>
+                  </div>
+              </div>
+              <!--/span-->
+              <div class="col-md-4">
+                  <div class="form-group">
+                      <label class="control-label">Provincia</label>
+                      <select (change)="cambioProvincia($event.target.value)" [(ngModel)]="distrito.provincia" name="provincia" class="form-control">
+                          <option [ngValue]="undefined">Seleccione</option>
+                          <option *ngFor="let provincia of provincias" [value]="provincia._id">
+                              {{ provincia.descripcion }}
+                          </option>
+                      </select>
+                  </div>
+              </div>
+              <div class="col-md-4">
+                  <div class="form-group">
+                      <label class="control-label">Distrito</label>
+                      <select (change)="cambioDistrito( $event.target.value )" [(ngModel)]="sede.distrito" name="distrito" class="form-control">
+                          <option [ngValue]="undefined">Seleccione</option>
+                          <option *ngFor="let distrito of distritos" [value]="distrito._id">
+                              {{ distrito.descripcion }}
+                          </option>
+                      </select>
+                  </div>
+              </div>
+              <!--/span-->
+          </div>
+        </div>
+          <!--/row-->
+      <div class="form-actions">
+          <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Guardar</button>
+          <button type="button" class="btn btn-inverse">Cancelar</button>
+      </div>
+  </form>
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+
+        <h3 class="card-title">Sedes</h3>
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Código</th>
+              <th>Sede</th>
+              <th>Dirección</th>
+              <th>Fecha</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let sede of sedes">
+              <td class="w70">
+                {{ sede.codigo }}
+              </td>
+              <td class="w150">
+                {{ sede.descripcion }}
+              </td>
+              <td>
+                {{ sede.direccion }}
+              </td>
+              <td class="w150">
+                {{ sede.fecha | date: format: shortDate }}
+              </td>
+              <th class="w150">
+                <button (click)="actualizardistritos( distrito )" class="btn btn-primary">
+                  <i class="fa fa-save"></i>
+                </button>
+                <button (click)="borrarDistrito( distrito )" class="btn btn-danger">
+                  <i class="fa fa-trash-o"></i>
+                </button>
+              </th>
+            </tr>
+          </tbody>
+        </table>
+    </div>
+  </div>
+</div>

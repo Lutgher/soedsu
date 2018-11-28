@@ -1,0 +1,107 @@
+<div class="card-body">
+  <form #f="ngForm" ngNativeValidate (ngSubmit)="guardarConcepto(f)">
+      <div class="form-body">
+          <h3 class="card-title">Datos Conceptos</h3>
+          <hr>
+          <div class="row p-t-20">
+              <div class="col-md-2">
+                  <div class="form-group">
+                      <label class="control-label">Código</label>
+                      <input [(ngModel)]="concepto.codigo" name="codigo" type="text" class="form-control" placeholder="Código" maxlength="4">
+                      <!-- <small class="form-control-feedback"> This is inline help </small>  -->
+                  </div>
+              </div>
+              <!--/span-->
+              <div class="col-md-4">
+                  <div class="form-group">
+                      <label class="control-label">Concepto</label>
+                      <input [(ngModel)]="concepto.descripcion" name="descripcion" type="text" class="form-control" placeholder="concepto" maxlength="30">
+                      <!-- <small class="form-control-feedback"> This field has error. </small>  -->
+                  </div>
+              </div>
+
+              <div class="col-md-3">
+                <div class="form-group">
+                    <label class="control-label">Estado Concepto</label>
+                    <select [(ngModel)]="concepto.obligatorio" name="obligatorio" class="form-control">
+                      <option value="OBLIGATORIO">OBLIGATORIO</option>
+                      <option value="OPCIONAL">OPCIONAL</option>
+                    </select> 
+                </div>
+            </div>
+
+              <!--/span-->
+              <div class="col-md-3">
+                  <div class="form-group">
+                      <label class="control-label">Estado</label>
+                      <select (change)="cambiarEstado($event.target.value)" [(ngModel)]="concepto.estado" name="estado" class="form-control">
+                          <option [ngValue]="undefined">Seleccione</option>
+                          <option *ngFor="let estado of estados" [value]="estado._id"> 
+                              {{ estado.descripcion }}
+                          </option>
+                      </select>
+                  </div>
+              </div>
+
+          </div>
+          <div class="row">
+              
+              <!--/span-->
+          </div>
+        </div>
+          <!--/row-->
+      <div class="form-actions">
+          <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Guardar</button>
+          <a routerLink="/ambientes" class="btn btn-inverse waves-effect waves-light">Cancelar</a>
+      </div>
+  </form>
+</div>
+
+<div class="row">
+<div class="col-12">
+  <div class="card">
+    <div class="card-body">
+
+      <h3 class="card-title">Escalas</h3>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Código</th>
+            <th>Concepto</th>
+            <th>Estado Concepto</th>
+            <th>Estado</th>
+            <th>Fecha</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let concepto of conceptos">
+            <td class="w70">
+              {{ concepto.codigo }}
+            </td>
+            <td >
+              {{ concepto.descripcion }}
+            </td>
+            <td >
+              {{ concepto.obligatorio }}
+            </td>
+            <td class="w150">
+              {{ concepto.estado.descripcion }}
+              </td>
+            <td class="w150">
+              {{ concepto.fecha | date: format: shortDate }}
+            </td>
+            <th class="w150">
+              <button (click)="actualizardistritos( distrito )" class="btn btn-primary">
+                <i class="fa fa-save"></i>
+              </button>
+              <button (click)="borrarDistrito( distrito )" class="btn btn-danger">
+                <i class="fa fa-trash-o"></i>
+              </button>
+            </th>
+          </tr>
+        </tbody>
+      </table>
+  </div>
+</div>
+</div>

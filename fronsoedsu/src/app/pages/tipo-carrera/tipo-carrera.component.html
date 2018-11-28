@@ -1,0 +1,55 @@
+<div class="row animated fadeIn">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+
+        <!-- <input #input (keyup)="buscarDepto( input.value )" type="text" class="form-control" placeholder="Buscar Departamentos"> -->
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+
+        <div class="text-right">
+          <button (click)="registrarTipoCarrera()" type="button" class="btn waves-effect waves-light btn-rounded btn-primary">
+            <i class="fa fa-plus"></i>
+            Crear Tipo de Carrera
+          </button>
+        </div>
+        <!-- <h3 class="card-title">Tipos de Carreras Registrados ( <small> {{ _departamentoService.totalDpto }} </small> )</h3> -->
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Tipo Carrera</th>
+              <th>Fecha</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let tipoCarrera of tiposCarreras">
+              <td>
+                <input [(ngModel)]="tipoCarrera.nombre" name="nombre" type="text" class="form-control" placeholder="Departamento">
+              </td>
+              <td class="w150">
+                  <!-- {{ departamento.fecha | date: format: shortDate }} -->
+                  <input [ngModel]="tipoCarrera.fecha | date:'shortDate'" name="fecha" type="text" class="form-control" placeholder="Fecha" disabled>
+              </td>
+              <th>
+                <button (click)="actualizarDepartamentos( departamento )" class="btn btn-primary">
+                  <i class="fa fa-save"></i>
+                </button>
+                <button (click)="borrarDepartamento( departamento )" class="btn btn-danger">
+                  <i class="fa fa-trash-o"></i>
+                </button>
+              </th>
+            </tr>
+          </tbody>
+        </table>
+    </div>
+  </div>
+</div>

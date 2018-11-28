@@ -1,0 +1,104 @@
+<div class="card-body">
+  <form #f="ngForm" ngNativeValidate (ngSubmit)="guardarFechaVenc(f)">
+      <div class="form-body">
+          <h3 class="card-title">Creación de Fechas de Vencimiento</h3>
+          <hr>
+          <div class="row p-t-20">
+              
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label">Tipo Carrera</label>
+                <select (change)="cambioTipoCarrera($event.target.value)" [(ngModel)]="fechaVencimiento.tipo" name="tipo" class="form-control">
+                  <option [ngValue]="undefined">Seleccione</option>
+                  <option *ngFor="let carrera of tipoCarreras" [value]="carrera._id"> 
+                      {{ carrera.nombre }}
+                    </option>
+                </select>
+              </div>
+            </div>
+
+            <div class="col-md-3">
+              <div class="form-group">
+                <label class="control-label">Periodo</label>
+                <select (change)="cambioPeriodo($event.target.value)" [(ngModel)]="fechaVencimiento.periodo" name="periodo" class="form-control">
+                  <option [ngValue]="undefined">Seleccione</option>
+                  <option *ngFor="let periodo of periodos" [value]="periodo._id"> 
+                      {{ periodo.nombre }}
+                    </option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label class="control-label">Nro Cuota</label>
+                    <input [(ngModel)]="fechaVencimiento.cuota" name="cuota" type="text" class="form-control" placeholder="" maxlength="10">
+                    <!-- <small class="form-control-feedback"> This is inline help </small>  -->
+                </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                  <label class="control-label">Fecha Venc</label>
+                  <input [(ngModel)]="fechaVencimiento.fechaVenc" name="fechaVenc" type="date" class="form-control" placeholder="dd/mm/yyyy">
+              </div>
+            </div>
+              <!--/span-->              
+              <!--/span-->
+
+          </div>
+          <div class="row">
+              
+              <!--/span-->
+          </div>
+        </div>
+          <!--/row-->
+      <div class="form-actions">
+          <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Guardar</button>
+          <a routerLink="/ambientes" class="btn btn-inverse waves-effect waves-light">Cancelar</a>
+      </div>
+  </form>
+</div>
+
+<div class="row">
+<div class="col-12">
+  <div class="card">
+    <div class="card-body">
+
+      <h3 class="card-title">Escalas</h3>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Tipo de Carrera</th>
+            <th>Periodo</th>
+            <th>Fecna Venc</th>
+            <th>Fecha Act</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let fechaVen of fechaVencimientos">
+            <td>
+              {{ fechaVen.tipo.nombre }}
+            </td>
+            <td>
+              {{ fechaVen.periodo.nombre }}
+            </td>
+            <td class="w70">
+              {{ fechaVen.fechaVenc | date: format: shortDate}}
+              </td>
+            <td class="w150">
+              {{ fechaVen.fecha | date: format: shortDate }}
+            </td>
+            <th class="w150">
+              <button (click)="actualizardistritos( distrito )" class="btn btn-primary">
+                <i class="fa fa-save"></i>
+              </button>
+              <button (click)="borrarDistrito( distrito )" class="btn btn-danger">
+                <i class="fa fa-trash-o"></i>
+              </button>
+            </th>
+          </tr>
+        </tbody>
+      </table>
+  </div>
+</div>
+</div>

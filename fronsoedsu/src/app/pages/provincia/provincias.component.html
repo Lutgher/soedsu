@@ -1,0 +1,28 @@
+<div class="card-body animated fadeIn">
+    <h4 class="card-title">Provincias</h4>
+    <h6 class="card-subtitle">Ingrese todos los campos solicitados</h6>
+    <form #f="ngForm" ngNativeValidate (ngSubmit)="guardarProvincia(f)" class="form p-t-20">
+        <div class="form-group">
+            <label for="exampleInputuname">Departamento</label>
+            <div class="input-group">
+                <div class="input-group-addon"></div>
+                <select (change)="cambioDepartamento( $event.target.value )" [(ngModel)]="provincia.departamento" name="departamento" class="form-control">
+                    <option value="">Seleccione Departamento</option>
+                    <option *ngFor="let departamento of departamentos" [value]="departamento._id">
+                        {{departamento.descripcion}}
+                    </option>
+                </select>
+                <!-- <input type="text" class="form-control" id="exampleInputuname" placeholder="Departamento" required> -->
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputuname">Provincia</label>
+            <div class="input-group">
+                <div class="input-group-addon"></div>
+                <input [(ngModel)]="provincia.descripcion" name="descripcion" type="text" class="form-control" placeholder="Provincia" required>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-success waves-effect waves-light m-r-10">Guardar</button>
+        <a routerLink="/provincias" class="btn btn-inverse waves-effect waves-light">Cancelar</a>
+    </form>
+</div>

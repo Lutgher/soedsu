@@ -1,0 +1,29 @@
+<div class="card-body">
+    <h4 class="card-title">Usuarios</h4>
+    <h6 class="card-subtitle">Ingrese todos los campos solicitados</h6>
+    <form ngNativeValidate [formGroup]="forma" (ngSubmit)="registrarUsuario()" class="form p-t-20">
+        <div class="form-group">
+            <label for="exampleInputuname">Nombre</label>
+            <div class="input-group">
+                <div class="input-group-addon"><i class="ti-user"></i></div>
+                <input formControlName="nombre" name="nombre" type="text" class="form-control" id="exampleInputuname" placeholder="Nombres" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputEmail1">Correo Electrónico</label>
+            <div class="input-group">
+                <div class="input-group-addon"><i class="ti-email"></i></div>
+                <input formControlName="correo" name="correo" type="email" class="form-control" id="exampleInputEmail1" placeholder="Correo Electrónico" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="pwd1">Contraseña</label>
+            <div class="input-group">
+                <div class="input-group-addon"><i class="ti-lock"></i></div>
+                <input formControlName="password" name="password" type="password" class="form-control" id="pwd1" placeholder="Contraseña" minlength="6" required>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-success waves-effect waves-light m-r-10">Guardar</button>
+        <button routerLink="/usuarios" class="btn btn-inverse waves-effect waves-light">Cancelar</button>
+    </form>
+</div>

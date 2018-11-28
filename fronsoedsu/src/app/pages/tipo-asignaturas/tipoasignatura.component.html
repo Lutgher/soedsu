@@ -1,0 +1,38 @@
+<div class="card-body animated fadeIn">
+  <h4 class="card-title">Tipo de Asignaturas</h4>
+  <h6 class="card-subtitle">Ingrese todos los campos solicitados</h6>
+  <form #f="ngForm" ngNativeValidate (ngSubmit)="guardarTipoAsignatura(f)" class="form p-t-20">
+      <div class="form-group">
+          <label for="exampleInputuname">Código</label>
+          <div class="input-group">
+              <div class="input-group-addon"></div>
+              
+              <input [(ngModel)]="tipoAsignatura.codigo" name="codigo"type="text" class="form-control"  placeholder="Código" required>
+          </div>
+      </div>
+      <div class="form-group">
+          <label for="exampleInputuname">Descripción</label>
+          <div class="input-group">
+              <div class="input-group-addon"></div>
+              <input [(ngModel)]="tipoAsignatura.descripcion" name="descripcion" type="text" class="form-control" placeholder="Descripción" required>
+          </div>
+      </div>
+      <div class="form-group">
+        <label for="exampleInputuname">Estado</label>
+        <div class="input-group">
+            <div class="input-group-addon"></div>
+            <select (change)="cambioEstado( $event.target.value )" [(ngModel)]="tipoAsignatura.estado"  name="estado" class="form-control">
+              <option [ngValue]="undefined">Seleccione Estado</option>
+              <option *ngFor="let estado of estados" [value]="estado._id">
+                  {{ estado.descripcion }}
+              </option>
+              <option>
+                  
+              </option>
+          </select>
+        </div>
+    </div>
+      <button type="submit" class="btn btn-success waves-effect waves-light m-r-10">Guardar</button>
+      <a routerLink="/tipoAsignatura" class="btn btn-inverse waves-effect waves-light">Cancelar</a>
+  </form>
+</div>

@@ -1,0 +1,74 @@
+<div class="row animated fadeIn">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+
+        <!-- <input #input (keyup)="buscarDepto( input.value )" type="text" class="form-control" placeholder="Buscar Departamentos"> -->
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+
+        <div class="text-right">
+          <button [routerLink]="['/estudiante','nuevo']" type="button" class="btn waves-effect waves-light btn-rounded btn-primary text-right">
+            <i class="fa fa-plus"></i>
+            Asignar Asignatura a Plan
+          </button>
+        </div>
+        <h3 class="card-title">Asignaturas por plan de estudios y carrera registrados ( <small> {{ totalReg }} </small> )</h3>
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Código</th>
+              <th>Plan Est</th>
+              <th>Asignatura</th>
+              <th>Periodo</th>
+              <th>Carrera</th>
+              <th>H. Teo.</th>
+              <th>H. Lab.</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let carAsig of carrerasAsignaturas">
+              <td class="img-50">
+                {{carAsig.asignatura.codigo}}
+              </td>
+              <td class="img-50">
+                {{ carAsig.planEstudio.descripcion }}
+              </td>
+              <td>
+                {{ carAsig.asignatura.descripcion }}
+              </td>
+              <td class="img-50">
+                {{ carAsig.periodo.nombre }}
+              </td>
+              <td class="w150">
+                {{ carAsig.carrera.periodo }}
+              </td>
+              <td>
+                {{ carAsig.horasTeoria }}
+              </td>
+              <td>
+                {{ carAsig.horasLaboratorio }}
+              </td>
+              <th>
+                <button (click)="actualizarcarrerasAsignaturas( departamento )" class="btn btn-primary">
+                  <i class="fa fa-save"></i>
+                </button>
+                <button (click)="eliminarAsignatura( carAsig )" class="btn btn-danger">
+                  <i class="fa fa-trash-o"></i>
+                </button>
+              </th>
+            </tr>
+          </tbody>
+        </table>
+    </div>
+  </div>
+</div>

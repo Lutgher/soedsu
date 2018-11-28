@@ -1,0 +1,96 @@
+<div class="card-body">
+    <form #f="ngForm" ngNativeValidate (ngSubmit)="guardarHorario(f)">
+        <div class="form-body">
+            <h3 class="card-title">Progamación Horas</h3>
+            <hr>
+            <div class="row p-t-20">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label class="control-label">Código</label>
+                        <input [(ngModel)]="horario.codigo" name="codigo" type="text" class="form-control" placeholder="Código" maxlength="4">
+                        <!-- <small class="form-control-feedback"> This is inline help </small>  -->
+                    </div>
+                </div>
+                <!--/span-->
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label class="control-label">Descripcion</label>
+                        <input [(ngModel)]="horario.descripcion" name="descripcion" type="text" class="form-control" placeholder="Sede" maxlength="30">
+                        <!-- <small class="form-control-feedback"> This field has error. </small>  -->
+                    </div>
+                </div>
+                <!--/span-->
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <label class="control-label">H. Inicio</label>
+                    <input [(ngModel)]="horario.horaInicio" name="horaInicio" type="text" class="form-control" placeholder="Hora Inicio" maxlength="60">
+                    <!-- <small class="form-control-feedback"> This field has error. </small>  -->
+                  </div>
+                </div>
+
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <label class="control-label">H. Fin</label>
+                    <input [(ngModel)]="horario.horaFin" name="horaFin" type="text" class="form-control" placeholder="Hora Fin" maxlength="60">
+                    <!-- <small class="form-control-feedback"> This field has error. </small>  -->
+                  </div>
+                </div>
+
+            </div>
+          </div>
+            <!--/row-->
+        <div class="form-actions">
+            <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Guardar</button>
+            <button type="button" class="btn btn-inverse">Cancelar</button>
+        </div>
+    </form>
+  </div>
+  
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+  
+          <h3 class="card-title">Sedes</h3>
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>Código</th>
+                <th>Descripción</th>
+                <th>Hora Inicio</th>
+                <th>Hora Fin</th>
+                <th>Fecha</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let horario of horarios">
+                <td class="w70">
+                  {{ horario.codigo }}
+                </td>
+                <td class="w150">
+                  {{ horario.descripcion }}
+                </td>
+                <td>
+                  {{ horario.horaInicio }}
+                </td>
+                <td>
+                  {{ horario.horaFin }}
+                </td>
+                <td class="w150">
+                  {{ horario.fecha | date: format: shortDate }}
+                </td>
+                <th class="w150">
+                  <button (click)="actualizardistritos( distrito )" class="btn btn-primary">
+                    <i class="fa fa-save"></i>
+                  </button>
+                  <button (click)="borrarDistrito( distrito )" class="btn btn-danger">
+                    <i class="fa fa-trash-o"></i>
+                  </button>
+                </th>
+              </tr>
+            </tbody>
+          </table>
+      </div>
+    </div>
+  </div>

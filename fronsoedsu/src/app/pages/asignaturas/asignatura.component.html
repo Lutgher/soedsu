@@ -1,0 +1,92 @@
+<div class="card-body">
+  <form #f="ngForm" ngNativeValidate (ngSubmit)="guardarAsignatura(f)">
+      <div class="form-body">
+          <h3 class="card-title">Asignaturas</h3>
+          <hr>
+          <div class="row p-t-20">
+              <div class="col-md-2">
+                  <div class="form-group">
+                      <label class="control-label">Código</label>
+                      <input [(ngModel)]="asignatura.codigo" name="codigo" type="text" class="form-control" placeholder="Código" maxlength="4">
+                      <!-- <small class="form-control-feedback"> This is inline help </small>  -->
+                  </div>
+              </div>
+              <!--/span-->
+              <div class="col-md-10">
+                  <div class="form-group">
+                      <label class="control-label">Asignatura</label>
+                      <input [(ngModel)]="asignatura.descripcion" name="descripcion" type="text" class="form-control" placeholder="asignatura" maxlength="30">
+                      <!-- <small class="form-control-feedback"> This field has error. </small>  -->
+                  </div>
+              </div>
+              <!--/span-->
+          </div>
+
+          <div class="row p-t-20">
+
+              <div class="col-md-2">
+                <div class="form-group">
+                    <label class="control-label">Estado</label>
+                    <select (change)="cambiarSede($event.target.value)" [(ngModel)]="asignatura.estado" name="estado" class="form-control">
+                        <option [ngValue]="undefined">Seleccione</option>
+                        <option *ngFor="let estado of estados" [value]="estado._id"> 
+                            {{ estado.descripcion }}
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label class="control-label">Periodo</label>
+                    <select (change)="cambiarSede($event.target.value)" [(ngModel)]="asignatura.periodo" name="periodo" class="form-control">
+                        <option [ngValue]="undefined">Seleccione</option>
+                        <option *ngFor="let periodo of periodos" [value]="periodo._id"> 
+                            {{ periodo.nombre }}
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <!--/span-->
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label class="control-label">Tipo Asig.</label>
+                    <select (change)="cambiarSede($event.target.value)" [(ngModel)]="asignatura.tipo" name="tipo" class="form-control">
+                        <option [ngValue]="undefined">Seleccione</option>
+                        <option *ngFor="let tipo of tipoAsignaturas" [value]="tipo._id"> 
+                            {{ tipo.descripcion }}
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <!--/span-->
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label class="control-label">H. Teorica</label>
+                    <input [(ngModel)]="asignatura.horasTeoria" name="horasTeoria" type="text" class="form-control" placeholder="Horas" maxlength="60">
+                    <!-- <small class="form-control-feedback"> This field has error. </small>  -->
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label class="control-label">H. Lab</label>
+                    <input [(ngModel)]="asignatura.horasLaboratorio" name="horasLaboratorio" type="text" class="form-control" placeholder="Horas." maxlength="60">
+                    <!-- <small class="form-control-feedback"> This field has error. </small>  -->
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label class="control-label">Créditos</label>
+                    <input [(ngModel)]="asignatura.creditos" name="creditos" type="text" class="form-control" placeholder="Creditos" maxlength="60">
+                    <!-- <small class="form-control-feedback"> This field has error. </small>  -->
+                </div>
+            </div>
+        </div>
+
+        </div>
+          <!--/row-->
+      <div class="form-actions">
+          <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Guardar</button>
+          <a routerLink="/asignatura" class="btn btn-inverse waves-effect waves-light">Cancelar</a>
+      </div>
+  </form>
+</div>

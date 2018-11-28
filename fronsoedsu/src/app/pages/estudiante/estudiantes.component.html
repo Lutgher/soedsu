@@ -1,0 +1,120 @@
+<div class="card-body">
+    <div class="row p-t-20">
+        <div class="col-md-3">
+            <div class="form-group">
+                <label class="control-label">Código</label>
+                <input #input (keyup.enter)="buscarEstudianteDni( input.value )" type="text" class="form-control" placeholder="Ingrese el DNI para buscar" maxlength="30" required>
+                <!-- <small class="form-control-feedback"> This is inline help </small>  -->
+            </div>
+        </div>
+        <!--/span-->
+        <div class="col-md-9">
+            <div class="form-group">
+                <label class="control-label">Estudiante</label>
+                <input [(ngModel)]="detalleRegistro.alias" name="alisss"type="text" class="form-control" placeholder="Apellidos y Nombres" maxlength="30">
+                <!-- <small class="form-control-feedback"> This field has error. </small>  -->
+            </div>
+        </div>
+        <!--/span-->
+    </div>
+
+    <form #f="ngForm" ngNativeValidate (ngSubmit)="guardarPersona(f)">
+        <div class="form-body">
+
+            <h3 class="card-title">Datos Personales</h3>
+            <hr>
+            <div class="row p-t-20">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label class="control-label">Código</label>
+                        <input [(ngModel)]="detalleRegistro.nroDocumento" name="nroDocumento" type="text" class="form-control" placeholder="Código" maxlength="30" disabled>
+                        <!-- <small class="form-control-feedback"> This is inline help </small>  -->
+                    </div>
+                </div>
+                <!--/span-->
+                <div class="col-md-9">
+                    <div class="form-group">
+                        <label class="control-label">Apellidos y Nombres</label>
+                        <input [(ngModel)]="detalleRegistro.alias" name="alias" type="text" class="form-control" placeholder="Apellidos y Nombres" maxlength="30" disabled>
+                        <!-- <small class="form-control-feedback"> This field has error. </small>  -->
+                    </div>
+                </div>
+                <!--/span-->
+            </div>
+            <!--/row-->
+            <div class="row">
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="control-label">Periodo</label>
+                        <select (change)="cambiarPeriodo($event.target.value)" [(ngModel)]="detalleRegistro.periodo" name="periodo" class="form-control" [disabled]="detalleRegistro.nroDocumento==undefined">
+                            <option [ngValue]="undefined">Seleccione</option>
+                            <option *ngFor="let periodo of periodos" [value]="periodo._id">
+                                {{ periodo.nombre }}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-8">
+                    <div class="form-group">
+                        <label class="control-label">Carrera Profesional</label>
+                        <select (change)="cambiarCarrera($event.target.value)" [(ngModel)]="detalleRegistro.carrera" name="carrera" class="form-control" [disabled]="detalleRegistro.nroDocumento==undefined">
+                            <option [ngValue]="undefined">Seleccione</option>
+                            <option *ngFor="let carrera of carreras" [value]="carrera._id">
+                                {{carrera.descripcion}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <!--/span-->
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="control-label">Sede</label>
+                        <select (change)="cambiarSede($event.target.value)" [(ngModel)]="detalleRegistro.sede" name="sede" class="form-control" [disabled]="detalleRegistro.nroDocumento==undefined">
+                            <option [ngValue]="undefined">Seleccione</option>
+                            <option *ngFor="let sede of sedes" [value]="sede._id">
+                                {{ sede.descripcion }}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <!--/span-->
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="control-label">Estado</label>
+                        <select (change)="cambiarEstado($event.target.value)" [(ngModel)]="detalleRegistro.estado" name="estado" class="form-control" [disabled]="detalleRegistro.nroDocumento==undefined">
+                            <option [ngValue]="undefined">Seleccione</option>
+                            <option *ngFor="let estado of estados" [value]="estado._id">
+                                {{ estado.descripcion }}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="control-label">Estado Estudiante</label>
+                        <select (change)="cambiarCarrera($event.target.value)" [(ngModel)]="detalleRegistro.tipoEstudiante" name="tipoEstudiante" class="form-control" [disabled]="detalleRegistro.nroDocumento==undefined">
+                            <option [ngValue]="undefined">Seleccione</option>
+                            <option *ngFor="let tipoEstudiante of tipoEstudiantes" [value]="tipoEstudiante._id">
+                                {{tipoEstudiante.descripcion}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <!--/span-->
+            </div>
+
+        </div>
+        <div class="form-actions">            
+            <button type="submit" class="btn btn-success" [disabled]="detalleRegistro.nroDocumento==undefined || usuarioExiste===true"> <i class="fa fa-check"></i> Guardar</button>
+            <a routerLink="/estudiante" class="btn btn-inverse">Cancelar</a>
+        </div>
+    </form>
+</div>

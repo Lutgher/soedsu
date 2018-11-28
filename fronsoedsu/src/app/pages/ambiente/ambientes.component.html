@@ -1,0 +1,60 @@
+<div class="card-body">
+    <form #f="ngForm" ngNativeValidate (ngSubmit)="guardarAmbiente(f)">
+        <div class="form-body">
+            <h3 class="card-title">Datos ambientes</h3>
+            <hr>
+            <div class="row p-t-20">
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label class="control-label">Código</label>
+                        <input [(ngModel)]="ambiente.codigo" name="codigo" type="text" class="form-control" placeholder="Código" maxlength="4">
+                        <!-- <small class="form-control-feedback"> This is inline help </small>  -->
+                    </div>
+                </div>
+                <!--/span-->
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label class="control-label">Ambiente</label>
+                        <input [(ngModel)]="ambiente.descripcion" name="descripcion" type="text" class="form-control" placeholder="Ambiente" maxlength="30">
+                        <!-- <small class="form-control-feedback"> This field has error. </small>  -->
+                    </div>
+                </div>
+                <!--/span-->
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label class="control-label">Capacidad</label>
+                        <input [(ngModel)]="ambiente.capacidad" name="capacidad" type="text" class="form-control" placeholder="Capacidad" maxlength="60">
+                        <!-- <small class="form-control-feedback"> This field has error. </small>  -->
+                    </div>
+                </div>
+                <div class="col-md-2">
+                        <div class="form-group">
+                            <label class="control-label">Tipo</label>
+                            <input [(ngModel)]="ambiente.tipoAmbiente" name="tipoAmbiente" type="text" class="form-control" placeholder="Tipo Ambiente" maxlength="60">
+                            <!-- <small class="form-control-feedback"> This field has error. </small>  -->
+                        </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="control-label">Sede</label>
+                        <select (change)="cambiarSede($event.target.value)" [(ngModel)]="ambiente.sede" name="sede" class="form-control">
+                            <option [ngValue]="undefined">Seleccione</option>
+                            <option *ngFor="let sede of sedes" [value]="sede._id"> 
+                                {{ sede.descripcion }}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                
+                <!--/span-->
+            </div>
+          </div>
+            <!--/row-->
+        <div class="form-actions">
+            <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Guardar</button>
+            <a routerLink="/ambientes" class="btn btn-inverse waves-effect waves-light">Cancelar</a>
+        </div>
+    </form>
+</div>

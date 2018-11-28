@@ -1,0 +1,21 @@
+<div class="card-body animated fadeIn">
+  <h6 class="card-subtitle">Ingrese todos los campos solicitados</h6>
+  <form #f="ngForm" ngNativeValidate (ngSubmit)="guardarEstado(f)" class="form p-t-20">
+      <div class="form-group">
+          <label for="exampleInputuname">Código</label>
+          <div class="input-group">
+              <div class="input-group-addon"></div>
+              <input [(ngModel)]="estado.codigo" name="codigo" type="text" class="form-control" placeholder="Código"  maxlength="2" required>
+          </div>
+      </div>
+      <div class="form-group">
+        <label for="exampleInputuname">Estado</label>
+        <div class="input-group">
+            <div class="input-group-addon"></div>
+            <input [(ngModel)]="estado.descripcion" name="descripcion" type="text" class="form-control" placeholder="Estado" maxlength="15" required>
+        </div>
+    </div>
+      <button type="submit" class="btn btn-success waves-effect waves-light m-r-10">Guardar</button>
+      <a routerLink="/estados" class="btn btn-inverse waves-effect waves-light">Cancelar</a>
+  </form>
+</div>

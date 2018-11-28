@@ -1,0 +1,68 @@
+<div class="row animated fadeIn">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+  
+          <input #input (keyup)="buscarPersona( input.value )"  type="text" class="form-control" placeholder="Buscar persona: Ingrese apellidos o nombres">
+  
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+  
+          <div class="text-right">
+            <button [routerLink]="['/personas','nuevo']" type="button" class="btn waves-effect waves-light btn-rounded btn-primary">
+              <i class="fa fa-plus"></i>
+              Crear Persona
+            </button>
+          </div>
+          <h3 class="card-title">Personas Registrados ( <small> {{ totalReg }} </small> )</h3>
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>DNI</th>
+                <th>Apellidos y Nombres</th>
+                <th>Lugar Nac.</th>
+                <th>Fecha</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let persona of personas">
+                <td>
+                  {{ persona.nroDocumento }}
+                </td>
+                <td>
+                  {{ persona.alias }}
+                </td>
+                <td>
+                  {{ persona.provincia.descripcion }}
+                </td>
+                <td class="w150">
+                  {{ persona.fecha | date: format: shortDate }}
+                </td>
+                <th>
+                  <button (click)="actualizardistritos( distrito )" class="btn btn-primary">
+                    <i class="fa fa-save"></i>
+                  </button>
+                  <button (click)="borrarDistrito( distrito )" class="btn btn-danger">
+                    <i class="fa fa-trash-o"></i>
+                  </button>
+                </th>
+              </tr>
+            </tbody>
+          </table>
+          <button (click)="cambiarDesde(-10)" class="btn btn-secondary">
+            Anteriores
+          </button>
+          <button (click)="cambiarDesde(10)" class="btn btn-secondary">
+            Siguientes
+          </button>
+      </div>
+    </div>
+  </div>

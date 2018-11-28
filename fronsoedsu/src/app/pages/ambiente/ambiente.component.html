@@ -1,0 +1,58 @@
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+
+        <div class="text-right">
+          <button [routerLink]="['/ambientes','nuevo']" type="button" class="btn waves-effect waves-light btn-rounded btn-primary">
+            <i class="fa fa-plus"></i>
+            Crear Ambiente
+          </button>
+        </div>
+        <h3 class="card-title">Ambientes Registrados</h3>
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Código</th>
+              <th>Descripción</th>
+              <th>Sede</th>
+              <th>Capacidad</th>
+              <th>Tipo</th>
+              <th>Fecha Act</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let ambiente of ambientes">
+              <td>
+                {{ ambiente.codigo }}
+              </td>
+              <td>
+                {{ambiente.descripcion}}
+              </td>
+              <td class="w150">
+                {{ ambiente.sede.descripcion }}
+              </td>
+              <td class="w150">
+                {{ ambiente.capacidad }}
+              </td>
+              <td class="w150">
+                {{ ambiente.tipoAmbiente }}
+              </td>
+              <td class="w150">
+                {{ ambiente.fecha | date: format: shortDate }}
+              </td>
+              <th>
+                <button (click)="actualizardistritos( distrito )" class="btn btn-primary">
+                  <i class="fa fa-save"></i>
+                </button>
+                <button (click)="borrarDistrito( distrito )" class="btn btn-danger">
+                  <i class="fa fa-trash-o"></i>
+                </button>
+              </th>
+            </tr>
+          </tbody>
+        </table>
+    </div>
+  </div>
+</div>
